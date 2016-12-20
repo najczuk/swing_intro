@@ -6,11 +6,14 @@ import java.awt.Dimension;
 import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class Workshop1 {
 	
@@ -29,7 +32,7 @@ public class Workshop1 {
 		// tworzenie i konfiguracja obiektu frame
 		JFrame frame = new JFrame("Workspace 1");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setMinimumSize(new Dimension(1000,500));
+//		frame.setMinimumSize(new Dimension(1000,500));
 		
 		//tworzenie i konfiguracja paska menu
 		JMenuBar greenMenuBar = new JMenuBar();
@@ -46,19 +49,28 @@ public class Workshop1 {
 		firstMenu.add(firstMenuItem);
 		
 		//tworzymy JLabel'e i umieszczamy je w oknie
-		JLabel textLabel = new JLabel("Text label");
-		JLabel imageLabel = new JLabel(
-				new ImageIcon("resources"+File.separator+"xmastree.png"));
-		JLabel mixedLabel = new JLabel("Mixed Label",
-				new ImageIcon("resources"+File.separator+"xmastree.png"),
-				JLabel.LEFT);
+//		JLabel textLabel = new JLabel("Text label");
+//		JLabel imageLabel = new JLabel(
+//				new ImageIcon("resources"+File.separator+"xmastree.png"));
+//		JLabel mixedLabel = new JLabel("Mixed Label",
+//				new ImageIcon("resources"+File.separator+"xmastree.png"),
+//				JLabel.LEFT);
+//		
+//		
+//		frame.getContentPane().add(textLabel, BorderLayout.LINE_START);
+//		frame.getContentPane().add(imageLabel, BorderLayout.CENTER);
+//		frame.getContentPane().add(mixedLabel, BorderLayout.LINE_END);
+		
+		JTextField loginField = new JTextField("wpisz login...");
+		JPasswordField passField = new JPasswordField();
+		JButton loginButton = new JButton("Log in");
+		JLabel infoLog = new JLabel("info...");
 		
 		
-		frame.getContentPane().add(textLabel, BorderLayout.LINE_START);
-		frame.getContentPane().add(imageLabel, BorderLayout.CENTER);
-		frame.getContentPane().add(mixedLabel, BorderLayout.LINE_END);
-		
-		
+		frame.getContentPane().add(loginField, BorderLayout.LINE_START);
+		frame.getContentPane().add(passField, BorderLayout.CENTER);
+		frame.getContentPane().add(loginButton, BorderLayout.LINE_END);
+		frame.getContentPane().add(infoLog, BorderLayout.PAGE_END);
 		
 		//wyświetlenie okna
 		frame.pack();
