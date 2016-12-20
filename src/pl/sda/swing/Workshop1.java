@@ -4,7 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class Workshop1 {
 	
@@ -23,7 +25,7 @@ public class Workshop1 {
 		// tworzenie i konfiguracja obiektu frame
 		JFrame frame = new JFrame("Workspace 1");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500,500);
+		frame.setMinimumSize(new Dimension(1000,500));
 		
 		//tworzenie i konfiguracja paska menu
 		JMenuBar greenMenuBar = new JMenuBar();
@@ -33,6 +35,11 @@ public class Workshop1 {
 		
 		//dodanie paska menu do okna
 		frame.setJMenuBar(greenMenuBar);
+		
+		JMenu firstMenu = new JMenu("File");
+		greenMenuBar.add(firstMenu);
+		JMenuItem firstMenuItem = new JMenuItem("Open");
+		firstMenu.add(firstMenuItem);
 		
 		//wyświetlenie okna
 		frame.pack();
