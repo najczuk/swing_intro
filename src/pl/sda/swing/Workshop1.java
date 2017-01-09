@@ -3,7 +3,10 @@ package pl.sda.swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,19 +18,22 @@ import javax.swing.JMenuItem;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Workshop1 {
+public class Workshop1 implements ActionListener{
+	
+	JLabel infoLog;
 	
 	public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                createAndShowGUI();
+            	Workshop1 w1 = new Workshop1();
+                w1.createAndShowGUI();
             }
         });
     }
 
-	private static void createAndShowGUI() {
+	public void createAndShowGUI() {
 		
 		// tworzenie i konfiguracja obiektu frame
 		JFrame frame = new JFrame("Workspace 1");
@@ -48,24 +54,12 @@ public class Workshop1 {
 		JMenuItem firstMenuItem = new JMenuItem("Open");
 		firstMenu.add(firstMenuItem);
 		
-		//tworzymy JLabel'e i umieszczamy je w oknie
-//		JLabel textLabel = new JLabel("Text label");
-//		JLabel imageLabel = new JLabel(
-//				new ImageIcon("resources"+File.separator+"xmastree.png"));
-//		JLabel mixedLabel = new JLabel("Mixed Label",
-//				new ImageIcon("resources"+File.separator+"xmastree.png"),
-//				JLabel.LEFT);
-//		
-//		
-//		frame.getContentPane().add(textLabel, BorderLayout.LINE_START);
-//		frame.getContentPane().add(imageLabel, BorderLayout.CENTER);
-//		frame.getContentPane().add(mixedLabel, BorderLayout.LINE_END);
-		
 		JTextField loginField = new JTextField("wpisz login...");
 		JPasswordField passField = new JPasswordField();
 		JButton loginButton = new JButton("Log in");
-		JLabel infoLog = new JLabel("info...");
+		loginButton.addActionListener(this);
 		
+		infoLog = new JLabel("info...");
 		
 		frame.getContentPane().add(loginField, BorderLayout.LINE_START);
 		frame.getContentPane().add(passField, BorderLayout.CENTER);
@@ -78,6 +72,12 @@ public class Workshop1 {
 		
 	
 		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println("Coś się klikło.");
+		infoLog.setText("Próba logowania: "+ new Date());
 	}
 
 }
