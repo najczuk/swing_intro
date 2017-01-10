@@ -46,11 +46,11 @@ public class TicTacToePanel extends JPanel implements ActionListener {
 		// TODO Auto-generated method stub
 		// System.out.println(e.getActionCommand());
 		int currIndex = Integer.valueOf(e.getActionCommand());
-		JButton clickedButton = getClickedButton(e);
+		JButton clickedButton = getClickedButton(currIndex);
 
 		if (clickedButton.getText().equals("")) {
 			clickedButton.setText(currSymbol);
-			System.out.println("Index: " + currIndex + " Iloraz:" + currIndex / size + " Reszta: " + currIndex % size);
+			//System.out.println("Index: " + currIndex + " Iloraz:" + currIndex / size + " Reszta: " + currIndex % size);
 			if (currSymbol.equals(CROSS)) {
 				crossClicks[currIndex / size][currIndex % size] = 1;
 			} else {
@@ -67,33 +67,31 @@ public class TicTacToePanel extends JPanel implements ActionListener {
 	private boolean isWinner(String symbolToCheck){
 		int[][] currClicksArr = symbolToCheck.equals(CROSS) ? crossClicks : circleClicks;
 		
+		int sumD1 = 0;
+		int sumD2 = 0;
 		for(int i = 0;i<size;i++){
 			int sumH = 0;
-			int sumV = 0;
+			int sumV = 0;			
+			
 			for(int j=0;j<size;j++){
 				sumH += currClicksArr[i][j];
 				sumV += currClicksArr[j][i];
 			}
-			if(sumH == size || sumV == size){
+			
+			sumD1 += currClicksArr[i][i];
+			sumD2 += currClicksArr[i][size-i-1];
+			
+			if(sumH == size || sumV == size || sumD1 == size || sumD2 == size){
 				return true;
 			}
 		}
 		
-		int sumD1 = 0;
-		int sumD2 = 0;
-		for(int i =0;i<size;i++){
-			sumD1 += currClicksArr[i][i];
-			sumD2 += currClicksArr[i][size-i-1];					
-		}
-		if(sumD1 == size || sumD2 == size){
-			return true;
-		}
 		
 		return false;
 	}
 	
-	private JButton getClickedButton(ActionEvent e) {
-		JButton clickedButton = buttons.get(Integer.valueOf(e.getActionCommand()));
+	private JButton getClickedButton(int currIndex) {
+		JButton clickedButton = buttons.get(currIndex);
 		return clickedButton;
 	}
 
