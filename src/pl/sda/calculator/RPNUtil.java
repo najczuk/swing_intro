@@ -1,7 +1,7 @@
 package pl.sda.calculator;
 
 import java.util.Scanner;
-import java.util.Stack;
+import pl.sda.structures.Stack;
 
 public class RPNUtil {
 
