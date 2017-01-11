@@ -10,7 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CalculatorPanel extends JPanel implements ActionListener{
+public class CalculatorPanel extends JPanel implements ActionListener {
+
+	private JTextField calculationText;
+	private String currentCalculation;
 
 	public CalculatorPanel() {
 		super();
@@ -24,8 +27,10 @@ public class CalculatorPanel extends JPanel implements ActionListener{
 		calculationConstr.gridx = 0;
 		calculationConstr.gridy = 0;
 		calculationConstr.gridwidth = 5;
-		calculationConstr.fill = GridBagConstraints.HORIZONTAL;		
-		JTextField calculationText = new JTextField("0");
+		calculationConstr.fill = GridBagConstraints.HORIZONTAL;
+		currentCalculation = "";
+		calculationText = new JTextField(currentCalculation);
+//		calculationText.setEnabled(false);
 		add(calculationText, calculationConstr);
 
 		int currDigit = 1;
@@ -39,50 +44,85 @@ public class CalculatorPanel extends JPanel implements ActionListener{
 				add(button, buttonConstraints);
 			}
 		}
-		
-		buttonConstraints.gridx = 0; buttonConstraints.gridy = 4;
-		JButton button = new JButton("C"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 1; buttonConstraints.gridy = 4;
-		button = new JButton("0"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 2; buttonConstraints.gridy = 4;
-		button = new JButton("."); button.addActionListener(this);
-		add(button,buttonConstraints);
-		
-		buttonConstraints.gridx = 3; buttonConstraints.gridy = 1;
-		button = new JButton("/"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 3; buttonConstraints.gridy = 2;
-		button = new JButton("*"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 3; buttonConstraints.gridy = 3;
-		button = new JButton("-"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 3; buttonConstraints.gridy = 4;
-		button = new JButton("+"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		
 
-		buttonConstraints.gridx = 4; buttonConstraints.gridy = 1;
-		button = new JButton("^"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 4; buttonConstraints.gridy = 2;
-		button = new JButton("("); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 4; buttonConstraints.gridy = 3;
-		button = new JButton(")"); button.addActionListener(this);
-		add(button,buttonConstraints);
-		buttonConstraints.gridx = 4; buttonConstraints.gridy = 4;
-		button = new JButton("="); button.addActionListener(this);
-		add(button,buttonConstraints);
+		buttonConstraints.gridx = 0;
+		buttonConstraints.gridy = 4;
+		JButton button = new JButton("C");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 1;
+		buttonConstraints.gridy = 4;
+		button = new JButton("0");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 2;
+		buttonConstraints.gridy = 4;
+		button = new JButton(".");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+
+		buttonConstraints.gridx = 3;
+		buttonConstraints.gridy = 1;
+		button = new JButton("/");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 3;
+		buttonConstraints.gridy = 2;
+		button = new JButton("*");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 3;
+		buttonConstraints.gridy = 3;
+		button = new JButton("-");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 3;
+		buttonConstraints.gridy = 4;
+		button = new JButton("+");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+
+		buttonConstraints.gridx = 4;
+		buttonConstraints.gridy = 1;
+		button = new JButton("^");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 4;
+		buttonConstraints.gridy = 2;
+		button = new JButton("(");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 4;
+		buttonConstraints.gridy = 3;
+		button = new JButton(")");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
+		buttonConstraints.gridx = 4;
+		buttonConstraints.gridy = 4;
+		button = new JButton("=");
+		button.addActionListener(this);
+		add(button, buttonConstraints);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		JButton clickedButton = (JButton) e.getSource();
+		String btnText = clickedButton.getText();
+		if (!btnText.equals("=") && !btnText.equals("C")) {
+			currentCalculation += RPNUtil.isOperator(btnText) ? (" " + btnText + " ") : btnText;
+
+		} else if (btnText.equals("C")) {
+			currentCalculation = "";
+
+		} else if (btnText.equals("=")) {
+			String rpnCalculation = RPNUtil.convertCalculationToRPN(currentCalculation);
+			Double result = RPNUtil.calculateRPN(rpnCalculation);
+			currentCalculation = Double.toString(result);
+
+		}
+		calculationText.setText(currentCalculation);
+
 	}
 
 }

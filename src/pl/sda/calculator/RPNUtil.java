@@ -100,8 +100,8 @@ public class RPNUtil {
 
     }
 
-    private static boolean isOperator(String token) {
-        return "+-*/^".contains(token);
+    public static boolean isOperator(String token) {
+        return "()+-*/^".contains(token);
     }
 
     private static int getOperatorPriority(String operator) {
