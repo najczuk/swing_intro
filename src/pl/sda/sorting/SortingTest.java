@@ -15,19 +15,7 @@ public class SortingTest {
 		ListSorter sorter = new SelectionSorter();
 		
 		System.out.println(listToSort.toString());
-		sorter.sort(listToSort, new Comparator<Integer>() {
-
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				int result =0;
-				if(o1>o2){
-					result = -1;
-				} else if(o1<o2){
-					result = 1;
-				}
-				return result;
-			}
-		});
+		sorter.sort(listToSort);
 		
 		
 //		sorter.sort(listToSort,new AdrianIntComparator());
