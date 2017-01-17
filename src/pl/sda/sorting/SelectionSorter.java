@@ -4,20 +4,22 @@ import java.util.Comparator;
 import java.util.List;
 import static java.util.Collections.swap;
 
-public class BubbleSorter implements ListSorter {
+public class SelectionSorter implements ListSorter {
 
 	@Override
 	public List sort(List<? extends Comparable> list) {
-		int length = list.size();
-		for (int pass = 1; pass < length; pass++) {
-			for (int left = 0; left < (length - pass); left++) {
-				int right = left + 1;
-				if (list.get(left).compareTo(list.get(right)) > 0) {
-					swap(list, left, right);
-				}
+		int wall, size = list.size(), smallest;
+
+		for (wall = 0; wall < size; wall++) {
+			smallest = wall;
+
+			for (int i = wall + 1; i < size; i++) {
+				smallest = list.get(smallest).compareTo(list.get(i)) > 0 ? i : smallest;
 			}
+			swap(list,wall,smallest);
+
 		}
-		
+
 		return list;
 	}
 

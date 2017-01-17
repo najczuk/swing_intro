@@ -11,7 +11,7 @@ public class SortingTest {
 		ArrayList<Integer> listToSort = 
 				new ArrayList(Arrays.asList(numbers));
 		
-		ListSorter sorter = new BubbleSorter();
+		ListSorter sorter = new SelectionSorter();
 		
 		System.out.println(listToSort.toString());
 		sorter.sort(listToSort);
