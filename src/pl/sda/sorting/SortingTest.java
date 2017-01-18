@@ -8,11 +8,11 @@ public class SortingTest {
 	
 	public static void main(String[] args) {
 		
-		Integer[] numbers = {4,2,57};
+		Integer[] numbers = {4,2,57,43,23,12};
 		ArrayList<Integer> listToSort = 
 				new ArrayList(Arrays.asList(numbers));
 		
-		ListSorter sorter = new SelectionSorter();
+		ListSorter sorter = new QuickSorter();
 		
 		System.out.println(listToSort.toString());
 		sorter.sort(listToSort);
