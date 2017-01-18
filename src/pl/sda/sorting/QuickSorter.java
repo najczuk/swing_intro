@@ -15,22 +15,25 @@ public class QuickSorter implements ListSorter{
 	private void quicksort(List<? extends Comparable> list, 
 			int left, int right){
 		if(right > left){
-			int pivot = getPivot(list, left,right);
+			int pivot = getPivot(list, left,right); //2
 			quicksort(list,0,pivot);
 			quicksort(list,pivot+1,right);
 		}
 	}
 
+	
+
+	
+//	dopoki left(= j bo to inkrementujemy) <= right
+//	sprawdz czy element po indeksem left jest mniejszy od right
+//		jeżeli tak to inkrementuj "i" i zrób swap i z left
+//			jeżeli nie to nie inkrementuj i nie rob swap
+//		inkrementuj left(j)
+//	
+//	return: jeżeli left < right to zwróć i, wpp. zwróć i -1
+	
 	private int getPivot(List<? extends Comparable> list, int left, int right) {
 		int i = left -1;
-		
-//		dopoki left(= j bo to inkrementujemy) <= right
-//		sprawdz czy element po indeksem left jest mniejszy od right
-//			jeżeli tak to inkrementuj "i" i zrób swap i z left
-//				jeżeli nie to nie inkrementuj i nie rob swap
-//			inkrementuj left(j)
-//		
-//		return: jeżeli left < right to zwróć i, wpp. zwróć i -1
 		
 		while(left<= right){
 			if(list.get(left).compareTo(list.get(right))<=0){
